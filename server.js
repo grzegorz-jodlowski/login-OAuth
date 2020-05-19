@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -9,6 +7,15 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
 
 const app = express();
+
+// configure passport provider options
+passport.use(new GoogleStrategy({
+  clientID: '556050177321-sqk9m929reetsnd46thfu5gq5ge96biu.apps.googleusercontent.com',
+  clientSecret: 'HxmNljQGOsT2QGgfTMyVxUJO',
+  callbackURL: 'http://localhost:8000/auth/callback'
+}, (accessToken, refreshToken, profile, done) => {
+  done(null, profile);
+}));
 
 app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 'main' }));
 app.set('view engine', '.hbs');
