@@ -8,13 +8,18 @@ const passportConfig = require('./config/passport');
 
 const app = express();
 
+// init session mechanism
 app.use(session({ secret: 'anything' }));
+
+// init passport
 app.use(passport.initialize());
 app.use(passport.session());
 
+// set handlebars as view engine
 app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 'main' }));
 app.set('view engine', '.hbs');
 
+// standard middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
