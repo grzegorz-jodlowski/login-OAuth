@@ -24,14 +24,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/user/logged', (req, res) => {
-  res.render('logged');
-});
-
-app.get('/user/no-permission', (req, res) => {
-  res.render('noPermission');
-});
-
+app.use('/user', require('./routes/user.routes'));
 app.use('/auth', require('./routes/auth.routes'));
 
 app.use('/', (req, res) => {
