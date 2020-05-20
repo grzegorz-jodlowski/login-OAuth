@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/logged', (req, res) => {
-  res.render('logged');
+  if (req.user) {
+    res.render('logged');
+  } else {
+    res.redirect('no-permission')
+  }
 });
 
 router.get('/no-permission', (req, res) => {
@@ -10,11 +14,19 @@ router.get('/no-permission', (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-  res.render('profile');
+  if (req.user) {
+    res.render('profile');
+  } else {
+    res.redirect('no-permission')
+  }
 });
 
 router.get('/profile/settings', (req, res) => {
-  res.render('profileSettings');
+  if (req.user) {
+    res.render('profileSettings');
+  } else {
+    res.redirect('no-permission')
+  }
 });
 
 module.exports = router;
