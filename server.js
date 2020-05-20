@@ -32,14 +32,7 @@ app.get('/user/no-permission', (req, res) => {
   res.render('noPermission');
 });
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['email', 'profile'] }));
-
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/user/no-permission' }),
-  (req, res) => {
-    res.redirect('/user/logged');
-  }
-);
+app.use('/auth', require('./routes/auth.routes'));
 
 app.use('/', (req, res) => {
   res.status(404).render('notFound');
