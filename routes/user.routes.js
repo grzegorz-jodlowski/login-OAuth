@@ -9,4 +9,12 @@ router.get('/no-permission', (req, res) => {
   res.render('noPermission');
 });
 
+router.get('/profile', (req, res) => {
+  res.render('profile');
+});
+
+router.get('/profile/settings', (req, res) => {
+  res.render('profileSettings');
+});
+
 module.exports = router;
