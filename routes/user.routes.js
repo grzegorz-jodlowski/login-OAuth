@@ -11,7 +11,6 @@ const isLogged = (req, res, next) => {
 
 router.get('/logged', isLogged, (req, res) => {
   res.render('logged', { name: req.user.displayName, image: req.user.photos[0].value });
-  console.log(' : req.user', req.user);
 });
 
 router.get('/no-permission', (req, res) => {
